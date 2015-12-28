@@ -1,0 +1,196 @@
+@import 'nib'
+@import 'rupture'
+
+// Color Palette
+_light = #f0ecea
+_accent = #fa1f3c
+_white = #ffffff
+_dark = #5c5049
+_brown = #a7988f
+
+// Font
+.sans-font
+  font-family 'Open Sans', sans-serif
+
+// PureCSS fixes
+.pure-g [class *='pure-u'],
+.pure-g-r [class*="pure-u"]
+  @extends .sans-font
+.pure-form
+  max-width 600px
+  margin auto
+  input[type='text'], input[type='password'], input[type='email'], input[type='url'], input[type='date'], input[type='month'], input[type='time'], input[type='datetime'], input[type='datetime-local'], input[type='week'], input[type='number'], input[type='search'], input[type='tel'], input[type='color'], select, textarea
+    @extends .sans-font
+    border none
+    box-shadow none
+    padding 10px 0
+    font-weight 400
+    font-size 24px
+    width 100%
+    &::-webkit-input-placeholder
+       color darken(_light, 10%)
+       font-weight 300
+    &:-moz-placeholder
+       color darken(_light, 10%)
+       font-weight 300
+    &::-moz-placeholder
+       color darken(_light, 10%)
+       font-weight 300
+    &:-ms-input-placeholder
+       color darken(_light, 10%)
+       font-weight 300
+  label
+    display block
+    text-transform uppercase
+    font-weight 400
+    font-size 12px
+    color _brown
+    small
+      font-size 1em
+      text-transform none
+  fieldset
+    padding 20px
+    border-radius 5px
+    background #FFF
+    color _dark
+  button
+    @extends .sans-font
+.pure-button
+  @extends .sans-font
+  padding 20px 40px
+  min-width 180px
+  border-radius 5px
+  text-transform uppercase
+  font-size 12px
+  font-weight 600
+  letter-spacing 0.1em
+  background darken(_brown, 15%)
+  color #FFF
+  transition background 0.4s ease
+  &.pure-button-accent
+    background _accent
+    
+  &:hover
+    background darken(_brown, 25%)
+    &.pure-button-accent
+      background darken(_accent, 10%)
+
+// Generic
+html,
+body
+  width 100%
+  height 100%
+  @extends .sans-font
+  font-size 1em
+  font-weight 400
+  overflow hidden
+
+_spacer = 5, 10, 20, 40, 50, 60, 80, 100, 150
+for _s in _spacer
+  .spacer-{ _s }
+    height ( _s * 1px )
+    
+h1
+  font-weight 300
+  font-size 2rem
+h3
+  font-weight 400
+  font-size 1rem
+  line-height 1.9em
+  color _dark
+
+.padding
+  padding 0 40px
+
+#intro
+  height 100%
+  
+  footer
+    position absolute
+    bottom 0
+    left 0
+    right 0
+    
+    ul
+      list-style none
+      margin 30px 0 20px 0
+      padding 0
+      font-size 0.8rem
+      color rgba(_brown, 0.7)
+      font-weight 600
+      li
+        display inline-block
+        margin 10px
+      a
+        color _brown
+        text-decoration none
+        &:hover
+          color _dark
+
+#signup
+  position absolute
+  top 100%
+  height 100%
+  left 0
+  right 0
+  transition top 1s ease
+  &.now
+    top 110px
+  .page-brown
+    height 100%
+  .page-cloud-brown
+    background-image url('../img/clouds-brown.png')
+    background-position center bottom
+    background-repeat no-repeat
+    height 250px
+    
+  .step-indicator
+    height 30px
+    span
+      display inline-block
+      vertical-align middle
+      margin 10px
+      font-size 14px
+      padding 4px 3px 3px 3px
+      color transparent
+      width 2px
+      height 2px
+      border-radius 20px
+      border 1px solid rgba(#FFF, 0.5)
+      &.done
+        background none
+        color #FFF
+        width 18px !important
+        height 18px !important
+        border-color transparent
+        padding 0
+      &.now
+        border-color #FFF
+        border-width 2px
+        width 8px
+        height 8px
+        
+  .step
+    display none
+    &.current-step
+      display block
+
+  
+.page-white
+  background-color _white
+  color _brown
+  
+.page-light
+  background-color _light
+  background-image url('../img/clouds-white.png')
+  background-position center bottom
+  background-repeat no-repeat
+  color _dark
+  
+.page-brown
+  background-color _brown
+  color _white
+  h3
+    color rgba(_light, 0.7)
+    strong
+      color _white

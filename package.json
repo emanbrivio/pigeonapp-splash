@@ -1,0 +1,32 @@
+{
+  "name": "pigeonapp-splash",
+  "version": "0.0.1",
+  "description": "PigeonApp - A better way to build HTML Contact Form",
+  "scripts": {
+    "dev": "sh bin/build.sh"
+  },
+  "keywords": [
+    "pigeon",
+    "contact",
+    "form",
+    "builder",
+    "html",
+    "html5",
+    "web",
+    "deploy",
+    "serverless",
+    "app"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.8.5",
+    "jade": "^1.11.0",
+    "nib": "^1.1.0",
+    "rupture": "^0.6.1",
+    "stylus": "^0.52.4"
+  },
+  "devDependencies": {
+    "eslint": "^1.8.0"
+  }
+}

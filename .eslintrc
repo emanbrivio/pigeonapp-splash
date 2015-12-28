@@ -1,0 +1,17 @@
+{
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "strict": 0,
+    "quotes": [2, "single", "avoid-escape"],
+    "no-unused-vars": 1,
+    "comma-dangle": [2, "always-multiline"],
+    "camelcase": 0,
+    "no-console": 0
+  },
+  "globals": {
+    "module": true,
+    "console": true
+  }
+}
