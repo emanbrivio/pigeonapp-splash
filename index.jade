@@ -52,12 +52,12 @@ block app
             .step.current-step
               fieldset.text-left
                 label Your Email Address
-                input(type='email' placeholder='john@doe.com')
+                input(type='email' placeholder='john@doe.com' name='creator-email')
 
                 .spacer-20
 
                 label Your Phone Number
-                input(type='tel' placeholder='+39 333 12312345')
+                input(type='tel' placeholder='+39 333 12312345' name='creator-phone-number')
 
               .text-center
                 .spacer-20
@@ -68,18 +68,28 @@ block app
             .step
               fieldset.text-left
                 label Website name
-                input(type='text' placeholder='My Personal Website')
+                input(type='text' placeholder='My Personal Website' name='website-name')
                 
                 .spacer-20
 
                 label Destination Email address
-                input(type='text' placeholder='info@mywebsite.com')
+                input(type='text' placeholder='info@mywebsite.com', name='website-address')
                 
                 .spacer-20
 
                 label Website Domains 
                   small (Comma separated values)
-                input(type='text' placeholder='localhost, mywebsite.com')
+                input(type='text' placeholder='localhost, mywebsite.com', name='website-domains')
+                
+                .spacer-20
+
+                label Success URL 
+                input(type='text' placeholder='mywebsite.com/success', name='website-success-url')
+                
+                .spacer-20
+
+                label Error URL 
+                input(type='text' placeholder='mywebsite.com/error', name='website-error-url')
                 
               .text-center
                 .spacer-20
