@@ -94,7 +94,7 @@ block app
               .text-center
                 .spacer-20
 
-                button.pure-button.next-step(type='button')
+                button.pure-button.next-step.last-step(type='button')
                   span Confirm
             
             .step
@@ -140,6 +140,19 @@ block script
         
         steps[currentStep].classList.add('current-step');
         stepIndicators[currentStep].classList.add('now');
+        
+        if (this.classList.contains('last-step')) {
+          reqwest({
+            url: 'https://cydv6wgomb.execute-api.eu-west-1.amazonaws.com/test/',
+            contentType: 'application/json',
+            method: 'get',
+            type: 'json',
+            data: {},
+            success: function (res) {
+              console.log('response', res);
+            },
+          });
+        }
       });
 
     })();
