@@ -130,11 +130,18 @@ h3
   left 0
   right 0
   bottom 0
+  +below(480px)
+    position static
+    height auto
+
   footer
     position absolute
     bottom 0
     left 0
     right 0
+    +below(480px)
+      position static
+      margin-top 100px
 
 a.logo
   position relative
@@ -143,7 +150,6 @@ a.logo
     border none
   
 footer
-
   ul
     list-style none
     margin 30px 0 20px 0
@@ -165,11 +171,15 @@ footer
   top 100%
   left 0
   right 0
-  transition top 1s ease
+  +below(480px)
+    position static
+    top auto
 
 #confirm
   margin-top -220px
   position relative
+  +below(480px)
+    margin-top -60px
   .step
     min-height 0
 
@@ -181,12 +191,19 @@ footer
   background-position center bottom
   background-repeat no-repeat
   height 250px
+  +below(480px)
+    height 100px
+    background-size auto 100px
 
 .page-cloud-white
   background-image url('../img/clouds-white.png')
   background-position right bottom
   background-repeat no-repeat
   height 300px
+  +below(480px)
+    height 100px
+    background-size auto 100px
+    background-position left bottom
 
 .step-indicator
   height 30px
@@ -221,6 +238,8 @@ footer
 .step
   display none
   min-height 500px
+  +below(480px)
+    min-height 0
   :first-child
     margin-top 0
   :last-child
@@ -262,6 +281,10 @@ footer
   background-position center bottom
   background-repeat no-repeat
   color _dark
+  +below(480px)
+    background-size auto 100px
+    .spacer-150
+      height 75px
   
 .page-brown
   background-color _brown
@@ -276,3 +299,8 @@ footer
     color #FFF
     text-decoration underline
     font-weight 600
+
+
++below(480px)
+  .padding
+    padding 0 20px
