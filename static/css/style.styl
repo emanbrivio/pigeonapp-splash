@@ -73,6 +73,7 @@ _brown = #a7988f
     color _dark
   button
     @extends .sans-font
+    
 .pure-button
   @extends .sans-font
   padding 20px 40px
@@ -129,28 +130,35 @@ h3
   left 0
   right 0
   bottom 0
-  
   footer
     position absolute
     bottom 0
     left 0
     right 0
-    
-    ul
-      list-style none
-      margin 30px 0 20px 0
-      padding 0
-      font-size 0.8rem
-      color rgba(_brown, 0.7)
-      font-weight 600
-      li
-        display inline-block
-        margin 10px
-      a
-        color _brown
-        text-decoration none
-        &:hover
-          color _dark
+
+a.logo
+  position relative
+  z-index 10
+  img
+    border none
+  
+footer
+
+  ul
+    list-style none
+    margin 30px 0 20px 0
+    padding 0
+    font-size 0.8rem
+    color rgba(_brown, 0.7)
+    font-weight 600
+    li
+      display inline-block
+      margin 10px
+    a
+      color _brown
+      text-decoration none
+      &:hover
+        color _dark
 
 #signup
   position absolute
@@ -158,70 +166,90 @@ h3
   left 0
   right 0
   transition top 1s ease
-  .page-cloud-brown
-    background-image url('../img/clouds-brown.png')
-    background-position center bottom
-    background-repeat no-repeat
-    height 250px
-    
-  .step-indicator
-    height 30px
-    span
-      display inline-block
-      vertical-align middle
-      margin 10px
-      font-size 14px
-      padding 4px 3px 3px 3px
-      color transparent
-      width 2px
-      height 2px
-      border-radius 20px
-      border 1px solid rgba(#FFF, 0.5)
-      &.done
-        background none
-        color #FFF
-        width 18px !important
-        height 18px !important
-        border-color transparent
-        padding 0
-      &.now
-        border-color #FFF
-        border-width 2px
-        width 8px
-        height 8px
-        
+
+#confirm
+  margin-top -220px
+  position relative
   .step
-    display none
-    min-height 500px
-    :first-child
-      margin-top 0
-    :last-child
-      margin-bottom 0
-    &.current-step
-      display block
-      
-  .advanced
-    display none
-    &.show
-      display block
-      & + label.advanced-toggle
-        display none
-        
-  .code-form
-    display none
-    &.show
-      display block
-    input
-      padding 10px 15px
-      font-size 14px
-      width 180px
-      display inline-block
-      color _dark
-      text-align center
-    button
-      padding 12px 15px
-      margin-left 20px
-      min-width 0
+    min-height 0
+
+#footer
+  background _brown
+
+.page-cloud-brown
+  background-image url('../img/clouds-brown.png')
+  background-position center bottom
+  background-repeat no-repeat
+  height 250px
+
+.page-cloud-white
+  background-image url('../img/clouds-white.png')
+  background-position right bottom
+  background-repeat no-repeat
+  height 300px
+
+.step-indicator
+  height 30px
+  span
+    display inline-block
+    vertical-align middle
+    margin 10px
+    font-size 14px
+    padding 4px 3px 3px 3px
+    color transparent
+    width 2px
+    height 2px
+    border-radius 20px
+    border 1px solid rgba(#FFF, 0.5)
+    &.done
+      background none
+      color #FFF
+      width 18px !important
+      height 18px !important
+      border-color transparent
+      padding 0
+    &.now
+      border-color #FFF
+      border-width 2px
+      width 8px
+      height 8px
+      &.done
+        background #FFF
+        color _brown
+        line-height 22px
+
+.step
+  display none
+  min-height 500px
+  :first-child
+    margin-top 0
+  :last-child
+    margin-bottom 0
+  &.current-step
+    display block
+
+.advanced
+  display none
+  &.show
+    display block
+    & + label.advanced-toggle
+      display none
+
+.code-form
+  display none
+  &.show
+    display block
+  input[type='text']
+    padding 10px 15px
+    font-size 14px
+    width 180px
+    display inline-block
+    color _dark
+    text-align center
+  button
+    padding 12px 15px
+    margin-left 20px
+    min-width 0
 
   
 .page-white
