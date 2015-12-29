@@ -104,6 +104,11 @@ h3
 
 #intro
   height 100%
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
   
   footer
     position absolute
@@ -130,14 +135,9 @@ h3
 #signup
   position absolute
   top 100%
-  height 100%
   left 0
   right 0
   transition top 1s ease
-  &.now
-    top 110px
-  .page-brown
-    height 100%
   .page-cloud-brown
     background-image url('../img/clouds-brown.png')
     background-position center bottom
@@ -172,6 +172,11 @@ h3
         
   .step
     display none
+    min-height 500px
+    :first-child
+      margin-top 0
+    :last-child
+      margin-bottom 0
     &.current-step
       display block
 
