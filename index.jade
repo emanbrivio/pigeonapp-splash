@@ -23,7 +23,7 @@ block app
             br
             | Energistically scale future-proof core competencies vis-a-vis impactful experiences.
           .spacer-40
-          button.pure-button.pure-button-accent(onclick='document.getElementById("signup").classList.add("now");')
+          a.pure-button.pure-button-accent(href='#signup', data-scroll)
             span Signup
     footer
       .text-center
@@ -50,6 +50,15 @@ block app
             .spacer-40
             
             .step.current-step
+              h1 We need to know more about you!
+              h3 This information will be used to 
+                strong activate 
+                | your form and send 
+                strong setup 
+                | instructions
+              
+              .spacer-20
+              
               fieldset.text-left
                 label Your Email Address
                 input(type='email' placeholder='john@doe.com' name='creator-email')
@@ -82,14 +91,25 @@ block app
                 input(type='text' placeholder='localhost, mywebsite.com', name='website-domains')
                 
                 .spacer-20
+                  
+                .advanced
+                  label Success URL 
+                  input(type='text' placeholder='mywebsite.com/success', name='website-success-url')
 
-                label Success URL 
-                input(type='text' placeholder='mywebsite.com/success', name='website-success-url')
+                  .spacer-20
+
+                  label Error URL 
+                  input(type='text' placeholder='mywebsite.com/error', name='website-error-url')
                 
-                .spacer-20
+                  .spacer-20
 
-                label Error URL 
-                input(type='text' placeholder='mywebsite.com/error', name='website-error-url')
+                  label.label-link.advanced-toggle
+                    i.fly-minus-squared
+                    span Hide Advanced Settings
+                
+                label.label-link.advanced-toggle
+                  i.fly-plus-squared
+                  span Advanced Settings
                 
               .text-center
                 .spacer-20
@@ -108,7 +128,19 @@ block app
                 strong your phone number
                 br
                 | to activate your account.
+              .spacer-20
+              p
+                small ...or 
+                  a.code(href='#') insert the code
+                  |  you've received via SMS.
+                
+                .code-form
+                  input(type='text' placeholder='Insert the 7 digits code' maxlength='7')
+                  button.pure-button
+                    span Activate
+                  
               
+      .spacer-100
               
 
 block script
@@ -164,6 +196,17 @@ block script
             },
           });
         }
+      });
+      
+      
+      document.querySelectorAll('.advanced-toggle').on('click', function () {
+        document.querySelector('.advanced').classList.toggle('show');
+      });
+      
+      
+      document.querySelector('.code').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector('.code-form').classList.add('show');
       });
 
     })();
