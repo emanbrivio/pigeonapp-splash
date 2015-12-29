@@ -9,4 +9,8 @@
     });
   };
   
+  smoothScroll.init({
+    speed: 1500
+  });
+  
 })();
