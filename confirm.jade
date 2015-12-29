@@ -1,0 +1,123 @@
+extends layout
+
+block title
+
+block head
+
+block app
+  section
+    include partials/header
+      
+  section#confirm
+    .page-cloud-brown
+    .page-brown
+      .padding
+        .text-center
+          form.pure-form
+            div.step-indicator
+              span.fly-check.done
+              span.fly-check.done
+              span.fly-check.now.done
+            
+            .spacer-40
+            
+            .step.current-step
+              h1 You are now ready to fly!
+              .spacer-5
+              h3 Now that everything is completed, we are sending
+              h3.text-left
+                | 1 - An 
+                strong email to your address 
+                | with instructions on how to 
+                strong integrate PigeonApp in your website
+                | .
+              h3.text-left
+                | 2 - A 
+                strong confirmation email to the destination address 
+                | just to ensure Pigeon will not be used against its purpose
+              
+              .spacer-20
+              p
+                small Thanks for flying with us!
+                
+                .code-form
+                  input(type='text' placeholder='Insert the 7 digits code' maxlength='7')
+                  button.pure-button
+                    span Activate
+                  
+              
+      .spacer-20
+  
+  section#footer
+    .page-cloud-white
+    .page-white
+      include partials/footer
+
+
+block script
+  script.
+    (function () {
+
+      NodeList.prototype.forEach = Array.prototype.forEach;
+      HTMLCollection.prototype.forEach = Array.prototype.forEach;
+
+      NodeList.prototype.on = function (event, listener) {
+        this.forEach(function (el) {
+          el.addEventListener(event, listener);
+        });
+      };
+      
+      
+      var currentStep = 0;
+      var steps = document.querySelectorAll('.step');
+      var stepIndicators = document.querySelectorAll('.step-indicator span');
+      
+      document.querySelectorAll('.next-step').on('click', function () {
+      
+        // Form Validation
+      
+        steps[currentStep].classList.remove('current-step');
+        stepIndicators[currentStep].classList.add('done');
+        stepIndicators[currentStep].classList.remove('now');
+        
+        currentStep = currentStep + 1;
+        
+        steps[currentStep].classList.add('current-step');
+        stepIndicators[currentStep].classList.add('now');
+        
+        if (this.classList.contains('last-step')) {
+          
+          var formData = {};
+          
+          var formNode = document.querySelector('.pure-form');
+          formNode.querySelectorAll('input').forEach(function (input) {
+            formData[input.name] = input.value;
+          });
+          
+          console.log('formData', formData);
+          
+          reqwest({
+            url: 'https://cydv6wgomb.execute-api.eu-west-1.amazonaws.com/test/form/create',
+            method: 'post',
+            contentType: 'application/json',
+            type: 'json',
+            data: JSON.stringify(formData),
+            success: function (res) {
+              console.log('response', res);
+            },
+          });
+        }
+      });
+      
+      
+      document.querySelectorAll('.advanced-toggle').on('click', function () {
+        document.querySelector('.advanced').classList.toggle('show');
+      });
+      
+      
+      document.querySelector('.code').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector('.code-form').classList.add('show');
+      });
+
+    })();
