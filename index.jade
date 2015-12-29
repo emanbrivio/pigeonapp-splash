@@ -143,12 +143,22 @@ block script
         stepIndicators[currentStep].classList.add('now');
         
         if (this.classList.contains('last-step')) {
+          
+          var formData = {};
+          
+          var formNode = document.querySelector('.pure-form');
+          formNode.querySelectorAll('input').forEach(function (input) {
+            formData[input.name] = input.value;
+          });
+          
+          console.log('formData', formData);
+          
           reqwest({
-            url: 'https://cydv6wgomb.execute-api.eu-west-1.amazonaws.com/test/',
+            url: 'https://cydv6wgomb.execute-api.eu-west-1.amazonaws.com/test/form/create',
+            method: 'post',
             contentType: 'application/json',
-            method: 'get',
             type: 'json',
-            data: {},
+            data: JSON.stringify(formData),
             success: function (res) {
               console.log('response', res);
             },
