@@ -37,7 +37,7 @@ block app
             
             .spacer-40
             
-            .step.current-step
+            .step.current-step.fade-in
               h1 We need to know more about you!
               h3 This information will be used to 
                 strong activate 
@@ -154,17 +154,27 @@ block script
       
         // Form Validation
       
-        steps[currentStep].classList.remove('current-step');
-        var oldStep = stepIndicators[currentStep];
-        oldStep.classList.remove('now');
+        var oldStep = steps[currentStep];
+        var oldStepIndicator = stepIndicators[currentStep];
+        currentStep = currentStep + 1;
+        var newStep = steps[currentStep];
+        var newStepIndicator = stepIndicators[currentStep];
+        
+        oldStep.classList.add('fade-out');
         setTimeout(function () {
-          oldStep.classList.add('done');
+          oldStep.classList.remove('current-step');
+          newStep.classList.add('current-step');
+          setTimeout(function () {
+            newStep.classList.add('fade-in');
+          }, 100);
+        }, 200);
+        
+        oldStepIndicator.classList.remove('now');
+        setTimeout(function () {
+          oldStepIndicator.classList.add('done');
         }, 100);
         
-        currentStep = currentStep + 1;
-        
-        steps[currentStep].classList.add('current-step');
-        stepIndicators[currentStep].classList.add('now');
+        newStepIndicator.classList.add('now');
         
         if (this.classList.contains('last-step')) {
           
