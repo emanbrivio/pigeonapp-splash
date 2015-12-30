@@ -28,9 +28,12 @@ block app
         .text-center
           form.pure-form
             div.step-indicator
-              span.fly-check.now
-              span.fly-check
-              span.fly-check
+              div
+                span.fly-check.now
+              div
+                span.fly-check
+              div
+                span.fly-check
             
             .spacer-40
             
@@ -152,8 +155,11 @@ block script
         // Form Validation
       
         steps[currentStep].classList.remove('current-step');
-        stepIndicators[currentStep].classList.add('done');
-        stepIndicators[currentStep].classList.remove('now');
+        var oldStep = stepIndicators[currentStep];
+        oldStep.classList.remove('now');
+        setTimeout(function () {
+          oldStep.classList.add('done');
+        }, 100);
         
         currentStep = currentStep + 1;
         

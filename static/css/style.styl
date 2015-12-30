@@ -207,17 +207,22 @@ footer
 
 .step-indicator
   height 30px
+  div
+    width 40px
+    display inline-block
+    text-align center
   span
     display inline-block
     vertical-align middle
-    margin 10px
+    margin 10px 0
     font-size 14px
     padding 4px 3px 3px 3px
     color transparent
     width 2px
     height 2px
     border-radius 20px
-    border 1px solid rgba(#FFF, 0.5)
+    border 2px solid rgba(#FFF, 0.5)
+    transition width 0.2s ease, height 0.2s ease, margin 0.2s ease, padding 0.2s ease, color 0.2s ease 0.2s, border 0.2s ease
     &.done
       background none
       color #FFF
@@ -225,11 +230,13 @@ footer
       height 18px !important
       border-color transparent
       padding 0
+      margin 9px 0
     &.now
       border-color #FFF
       border-width 2px
       width 8px
       height 8px
+      margin 10px 0
       &.done
         background #FFF
         color _brown
