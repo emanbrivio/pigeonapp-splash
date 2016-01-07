@@ -1,0 +1,23 @@
+extends ../layout
+
+block title
+  | PigeonApp - Page not found
+
+block app
+  section
+    include ../partials/header
+      
+  section
+    .page-white
+      .padding
+        .text-center
+          h1 Nothing to see here!
+          p Please 
+            a.stronglink(href='/') go away
+            | . Now.
+          img(src='/static/img/death.png' width='200' height='150')
+      
+      .spacer-100
+          
+      include ../partials/footer
+      .spacer-20
