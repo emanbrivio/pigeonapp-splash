@@ -1,10 +1,16 @@
 extends ../layout
 
 block title
-  | PigeonApp - Verifying your phone
+  | Verifying your credentials...
 
 block head
   script(src='//cdnjs.cloudflare.com/ajax/libs/js-url/2.0.2/url.min.js')
   script.
-    var token = url('?p');
-    window.location.href = 'https://api.pigeonapp.im/p/' + token;
+    var tokenP = url('?p');
+    var tokenE = url('?e');
+    
+    if (tokenP) {
+      window.location.href = 'https://api.pigeonapp.im/p/' + tokenP;
+    } else if (tokenE) {
+      window.location.href = 'https://api.pigeonapp.im/e/' + tokenE;
+    }
