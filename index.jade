@@ -250,7 +250,7 @@ block script
           console.log('formData', formData);
 
           reqwest({
-            url: 'https://cydv6wgomb.execute-api.eu-west-1.amazonaws.com/test/form/create',
+            url: '!{API_URL}',
             method: 'post',
             contentType: 'application/json',
             type: 'json',
