@@ -27,6 +27,9 @@ block app
       .padding
         .text-center
           form.pure-form
+          
+            input.pure-button.next-step.last-step(type='submit', style='display:none')
+          
             div.step-indicator
               div
                 span.fly-check.now
@@ -49,12 +52,12 @@ block app
               
               fieldset.text-left
                 label Your Email Address
-                input(type='email' placeholder='john@doe.com' name='creator-email')
+                input.step-1-fields(type='email' placeholder='john@doe.com' name='creator-email' required)
 
                 .spacer-20
 
                 label Your Phone Number
-                input(type='tel' placeholder='+39 333 12312345' name='creator-phone-number')
+                input.step-1-fields.phone(type='tel' placeholder='+39 333 12312345' name='creator-phone-number' required)
 
               .text-center
                 .spacer-20
@@ -65,18 +68,18 @@ block app
             .step
               fieldset.text-left
                 label Website name
-                input(type='text' placeholder='My Personal Website' name='website-name')
+                input.step-2-fields(type='text' placeholder='My Personal Website' name='website-name' required)
                 
                 .spacer-20
 
                 label Destination Email address
-                input(type='text' placeholder='info@mywebsite.com', name='website-address')
+                input.step-2-fields(type='text' placeholder='info@mywebsite.com' name='website-address' required)
                 
                 .spacer-20
 
                 label Website Domains 
                   small (Comma separated values)
-                input(type='text' placeholder='localhost, mywebsite.com', name='website-domains')
+                input.step-2-fields.domains(type='text' placeholder='localhost, mywebsite.com' name='website-domains' required)
                 
                 //-
                   .spacer-20
@@ -103,9 +106,9 @@ block app
               .text-center
                 .spacer-20
 
-                button.pure-button.next-step.last-step(type='button')
+                button.pure-button.next-step.last-step(type='submit')
                   span Confirm
-            
+
             .step
               h1 Thank you!
               .spacer-5
@@ -149,11 +152,49 @@ block script
       var currentStep = 0;
       var steps = document.querySelectorAll('.step');
       var stepIndicators = document.querySelectorAll('.step-indicator span');
+      var formNode = document.querySelector('.pure-form');
+      
+      
+      formNode.addEventListener('submit', function (e) {
+        e.preventDefault();
+        return false;
+      });
       
       document.querySelectorAll('.next-step').on('click', function () {
       
         // Form Validation
-      
+
+        var isValid = true;
+        formNode.querySelectorAll('.step-' + (currentStep + 1) + '-fields').forEach(function (input) {
+          console.log(input.classList);
+          if (input.classList.contains('domains')) {
+            const str = input.value;
+            
+            var valueCounter = 0;
+            var values = str.split(',');
+            values.forEach(function (domain) {
+              if (domain.trim().length > 0) {
+                valueCounter++;
+              }
+            })
+            
+            if (!valueCounter) {
+              isValid = false;
+            }
+          } else {
+            if (!input.checkValidity()) {
+              isValid = false;
+            }
+          }
+        });
+        
+        console.log('isValid', isValid);
+        
+        if (!isValid) {
+          formNode.querySelector('input[type=submit]').click();
+          return;
+        }
+        
         var oldStep = steps[currentStep];
         var oldStepIndicator = stepIndicators[currentStep];
         currentStep = currentStep + 1;
@@ -180,15 +221,36 @@ block script
           
           var formData = {};
           
-          var formNode = document.querySelector('.pure-form');
           formNode.querySelectorAll('input').forEach(function (input) {
-            formData[input.name] = input.value;
+            var value = input.value.trim();
+            
+            if (input.classList.contains('phone')) {
+              value = value.replace(/\ \-/g, '');
+              if (!/\+39/.test(value)) {
+                value = '+39' + value;
+              }
+            } else if (input.classList.contains('domains')) {
+              value = value.replace(/\ /g, '');
+              var rawDomains = value.split(',');
+              var domains = [];
+              rawDomains.forEach(function (domain) {
+                domain = domain.trim();
+                if (domain) {
+                  domains.push(domain);
+                }
+              });
+              value = domains.join(',');
+            }
+            
+            if (input.name) {
+              formData[input.name] = value;
+            }
           });
           
           console.log('formData', formData);
-          
+
           reqwest({
-            url: 'https://cydv6wgomb.execute-api.eu-west-1.amazonaws.com/test/form/create',
+            url: '!{API_URL}',
             method: 'post',
             contentType: 'application/json',
             type: 'json',
