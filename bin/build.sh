@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-API_URL=https://api.pigeonapp.im/create
+API_URL=https://api.pigeonapp.im/form/create
 echo $API_URL
 JADE_OBJECT="{\"API_URL\":  \"$API_URL\"}"
 ./node_modules/.bin/http-server -c-1 -p $PORT -a 0.0.0.0 &
