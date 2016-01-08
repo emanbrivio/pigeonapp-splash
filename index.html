@@ -113,6 +113,7 @@
       reqwest({
         url: 'https://api.pigeonapp.im/create',
         method: 'post',
+        crossOrigin: true,
         contentType: 'application/json',
         type: 'json',
         data: JSON.stringify(formData),

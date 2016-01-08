@@ -252,6 +252,7 @@ block script
           reqwest({
             url: '!{API_URL}',
             method: 'post',
+            crossOrigin: true,
             contentType: 'application/json',
             type: 'json',
             data: JSON.stringify(formData),
