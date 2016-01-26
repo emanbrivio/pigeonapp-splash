@@ -127,8 +127,8 @@ block app
                   |  you've received via SMS.
                 
                 .code-form
-                  input(type='text' placeholder='Insert the 7 digits code' maxlength='7')
-                  button.pure-button
+                  input.code-input(type='text' placeholder='Insert the code')
+                  button.pure-button.code-button(type='button')
                     span Activate
                   
               
@@ -250,8 +250,9 @@ block script
           console.log('formData', formData);
 
           reqwest({
-            url: '!{API_URL}',
+            url: '!{BASE_URL}!{CREATE_FORM_PATH}',
             method: 'post',
+            crossOrigin: true,
             contentType: 'application/json',
             type: 'json',
             data: JSON.stringify(formData),
@@ -271,6 +272,27 @@ block script
       document.querySelector('.code').addEventListener('click', function (e) {
         e.preventDefault();
         document.querySelector('.code-form').classList.add('show');
+      });
+      
+      
+      document.querySelector('.code-button').addEventListener('click', function (e) {
+        e.preventDefault();
+        var code = document.querySelector('.code-input').value;
+        reqwest({
+          url: '!{BASE_URL}!{SEND_CODE_PATH}' + code,
+          method: 'get',
+          crossOrigin: true,
+          contentType: 'application/json',
+          type: 'json',
+          success: function (res) {
+            console.log('response', res);
+            window.location.href = '/confirm';
+          },
+          error: function () {
+            console.error('Error during phone confirmation');
+            window.location.href = '/confirm';
+          }
+        });
       });
 
     })();
